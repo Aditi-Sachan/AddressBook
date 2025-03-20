@@ -1,5 +1,3 @@
-// src/Contact.js
-
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phoneNumber, email) {
         this.firstName = firstName;
@@ -21,7 +19,7 @@ class Contact {
         if (nameRegex.test(firstName)) {
             this._firstName = firstName;
         } else {
-            throw "Invalid First Name!";
+            throw "Invalid First Name! It should start with a capital letter and have a minimum of 3 characters.";
         }
     }
 
@@ -34,7 +32,7 @@ class Contact {
         if (nameRegex.test(lastName)) {
             this._lastName = lastName;
         } else {
-            throw "Invalid Last Name!";
+            throw "Invalid Last Name! It should start with a capital letter and have a minimum of 3 characters.";
         }
     }
 
@@ -47,7 +45,7 @@ class Contact {
         if (addressRegex.test(address)) {
             this._address = address;
         } else {
-            throw "Invalid Address!";
+            throw "Invalid Address! It should have a minimum of 4 characters.";
         }
     }
 
@@ -60,7 +58,7 @@ class Contact {
         if (cityStateRegex.test(city)) {
             this._city = city;
         } else {
-            throw "Invalid City!";
+            throw "Invalid City! It should have a minimum of 4 characters.";
         }
     }
 
@@ -73,7 +71,7 @@ class Contact {
         if (cityStateRegex.test(state)) {
             this._state = state;
         } else {
-            throw "Invalid State!";
+            throw "Invalid State! It should have a minimum of 4 characters.";
         }
     }
 
@@ -86,7 +84,7 @@ class Contact {
         if (zipRegex.test(zip)) {
             this._zip = zip;
         } else {
-            throw "Invalid Zip!";
+            throw "Invalid Zip! It should be a 6-digit number and should not start with 0.";
         }
     }
 
@@ -99,7 +97,7 @@ class Contact {
         if (phoneRegex.test(phoneNumber)) {
             this._phoneNumber = phoneNumber;
         } else {
-            throw "Invalid Phone Number!";
+            throw "Invalid Phone Number! It should be a 10-digit number.";
         }
     }
 
@@ -112,7 +110,7 @@ class Contact {
         if (emailRegex.test(email)) {
             this._email = email;
         } else {
-            throw "Invalid Email!";
+            throw "Invalid Email! Please enter a valid email.";
         }
     }
 
@@ -122,9 +120,11 @@ class Contact {
     }
 }
 
-// Create a Contact Object
+// Create an Array to Store Multiple Contacts
+let addressBookArray = [];
+
 try {
-    let contact = new Contact(
+    let contact1 = new Contact(
         "John",
         "Doe",
         "123 Street",
@@ -134,7 +134,38 @@ try {
         "9876543210",
         "john.doe@example.com"
     );
-    console.log(contact.toString());
+    addressBookArray.push(contact1);
+
+    let contact2 = new Contact(
+        "Alice",
+        "Smith",
+        "456 Avenue",
+        "Paris",
+        "State",
+        "987654",
+        "9123456789",
+        "alice.smith@example.com"
+    );
+    addressBookArray.push(contact2);
+
+    // Invalid Contact - Should Throw an Error
+    let contact3 = new Contact(
+        "james", // Invalid first name
+        "Brown",
+        "789 Boulevard",
+        "Berlin",
+        "State",
+        "876543",
+        "9123456789",
+        "james.brown@example.com"
+    );
+    addressBookArray.push(contact3);
+
 } catch (error) {
     console.error(error);
 }
+
+// Display Valid Contacts
+console.log("\n Valid Contacts in Address Book:");
+addressBookArray.forEach(contact => console.log(contact.toString()));
+
